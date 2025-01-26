@@ -22,7 +22,7 @@ export const clerkWebhooks = async(req, res)=>{
         
 
         // switch case for different events
-
+        console.log(data);
         switch (type) {
             case 'user.created':{
 
@@ -35,6 +35,7 @@ export const clerkWebhooks = async(req, res)=>{
                 }
                 await User.create(userData)
                 res.json({})
+                console.log(userData);
                 break;
 
 
