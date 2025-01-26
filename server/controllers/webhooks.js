@@ -17,7 +17,7 @@ export const clerkWebhooks = async(req, res)=>{
         })
 
         // getting data from request body
-        dgeg
+     
         const {data,type} = req.body
         
 
@@ -69,6 +69,6 @@ export const clerkWebhooks = async(req, res)=>{
 
     } catch (error) {
         console.log("error.message");
-        res.json({success:false, message: 'Webhooks Error!'})
+        res.json({success:false, message: 'Webhooks Error! '+error.message()})
     }
 }
