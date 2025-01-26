@@ -23,23 +23,6 @@ app.use(express.json())
 
 app.get('/',async(req,res)=> {
 
-  return res.send(process.env.MONGODB_URI)
-
-  try{
-  const user =  User({
-    _id: "data.id",
-    email: "data.email_addresses[0].email_address",
-    name: "data.first_name data.last_name",
-    image: "data.image_ur",
-    resume: ''
-  })
-
-  await user.save()
-}catch(e){
-  return res.send(e.message)
-}
-
-  res.send("okay")
 ;})
 app.get("/debug-sentry", function mainHandler(req, res) {
     throw new Error("My first Sentry error!");
