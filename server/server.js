@@ -23,6 +23,8 @@ app.use(express.json())
 
 app.get('/',async(req,res)=> {
 
+  return res.send(process.env.MONGODB_URI)
+
   try{
   const user =  User({
     _id: "data.id",
