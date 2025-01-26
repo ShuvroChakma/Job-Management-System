@@ -5,6 +5,7 @@ import 'dotenv/config'
 import connectDB from './configs/db.js'
 import * as Sentry from "@sentry/node";
 import { clerkWebhooks } from './controllers/webhooks.js'
+import User from './models/User.js'
 
 // Initialize Express
 
@@ -20,7 +21,24 @@ app.use(express.json())
 
 // Routes
 
-app.get('/',(req,res)=> res.send("API is working"))
+app.get('/',async(req,res)=> {
+
+  try{
+  const user =  User({
+    _id: "data.id",
+    email: "data.email_addresses[0].email_address",
+    name: "data.first_name data.last_name",
+    image: "data.image_ur",
+    resume: ''
+  })
+
+  await user.save()
+}catch(e){
+  return res.send(e.message)
+}
+
+  res.send("okay")
+;})
 app.get("/debug-sentry", function mainHandler(req, res) {
     throw new Error("My first Sentry error!");
   });
