@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import { v2 as cloudinary} from 'cloudinary'
 import generateToken from "../utility/generateToken.js";
 import Job from "../models/Job.js";
-import JobApplication from "../models/jobApplication.js";
+import JobApplication from "../models/JobApplication.js";
 import { toNamespacedPath } from "path";
 
 
