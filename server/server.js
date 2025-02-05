@@ -5,7 +5,6 @@ import "dotenv/config";
 import connectDB from "./configs/db.js";
 import * as Sentry from "@sentry/node";
 import { clerkWebhooks } from "./controllers/webhooks.js";
-import User from "./models/User.js";
 import companyRoutes from "./routes/companyRoutes.js";
 import connectCloudinary from "./configs/cloudinary.js";
 import jobRoutes from "./routes/jobRoutes.js";
@@ -17,8 +16,19 @@ import { clerkMiddleware } from "@clerk/express";
 const app = express();
 
 // connect to database
-await connectDB();
-await connectCloudinary();
+//await connectDB();
+//await connectCloudinary();
+(async () => {
+  try {
+    await connectDB();
+    await connectCloudinary();
+    console.log("Database & Cloudinary connected!");
+  } catch (error) {
+    console.error("Error in DB or Cloudinary connection:", error);
+    process.exit(1); // Exit if connection fails
+  }
+})();
+
 
 // Middlewares
 
