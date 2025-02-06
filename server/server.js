@@ -1,9 +1,9 @@
-import "./configs/instrument.js";
+// import "./configs/instrument.js";
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import connectDB from "./configs/db.js";
-import * as Sentry from "@sentry/node";
+// import * as Sentry from "@sentry/node";
 import { clerkWebhooks } from "./controllers/webhooks.js";
 import companyRoutes from "./routes/companyRoutes.js";
 import connectCloudinary from "./configs/cloudinary.js";
@@ -18,6 +18,7 @@ const app = express();
 // connect to database
 //await connectDB();
 //await connectCloudinary();
+
 (async () => {
   try {
     await connectDB();
@@ -41,9 +42,9 @@ app.use(clerkMiddleware());
 app.get("/", async (req, res) => {
   res.send("Api working!");
 });
-app.get("/debug-sentry", function mainHandler(req, res) {
-  throw new Error("My first Sentry error!");
-});
+// app.get("/debug-sentry", function mainHandler(req, res) {
+//   throw new Error("My first Sentry error!");
+// });
 app.post("/webhooks", clerkWebhooks);
 app.use("/api/company", companyRoutes);
 app.use("/api/jobs", jobRoutes);
@@ -52,7 +53,7 @@ app.use("/api/users", userRoutes);
 // Port
 
 const PORT = process.env.PORT || 5000;
-Sentry.setupExpressErrorHandler(app);
+// Sentry.setupExpressErrorHandler(app);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
